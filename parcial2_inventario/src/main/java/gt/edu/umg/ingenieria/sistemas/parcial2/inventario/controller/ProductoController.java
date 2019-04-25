@@ -5,6 +5,10 @@ import gt.edu.umg.ingenieria.sistemas.parcial2.inventario.service.ProductoServic
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +22,16 @@ public class ProductoController {
     @GetMapping("/buscarTodos")
     public List<ProductoEntity> buscarTodos() {
         return this.productoService.buscarTodos();
+    }
+    
+    @PostMapping("/registrarProducto")
+    public ProductoEntity registrarProducto(@RequestBody(required = true) ProductoEntity varent){
+        return this.productoService.registrarProducto(varent);
+    }
+    
+     @PutMapping("actualizarStock/{id}")
+    public ProductoEntity actualizarStock(@RequestBody(required = true)ProductoEntity varent,@PathVariable Long id){
+        return this.productoService.actualizarStock(varent,id);
     }
     
 }

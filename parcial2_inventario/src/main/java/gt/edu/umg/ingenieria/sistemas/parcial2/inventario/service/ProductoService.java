@@ -16,4 +16,17 @@ public class ProductoService {
         return (List<ProductoEntity>) this.productoRepository.findAll();
     }
     
+    public ProductoEntity registrarProducto(ProductoEntity varent) {
+         String Name =varent.getName();
+        
+        Name=Name.substring(0,1).toUpperCase() + Name.substring(1).toLowerCase();
+        varent.setName(Name);
+        
+        return this.productoRepository.save(varent);
+    }
+         public ProductoEntity actualizarStock(ProductoEntity stock, Long id) {
+        return this.productoRepository.save(stock);        
+    }
+    
+    
 }
